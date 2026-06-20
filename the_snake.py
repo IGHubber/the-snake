@@ -80,12 +80,7 @@ class Apple(GameObject):
         self.randomize_position(occupied_positions)
 
     def randomize_position(self, occupied_positions) -> None:
-        """Случайно определяет позицию для яблока на игровом поле.
-
-        Args:
-            occupied_positions (list): Список занятых позиций (тело змейки).
-                Позиция яблока не должна совпадать ни с одной из этих позиций.
-        """
+        """Случайно определяет позицию для яблока на игровом поле."""
         while True:
             new_position = (
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
