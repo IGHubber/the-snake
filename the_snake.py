@@ -71,7 +71,7 @@ class Apple(GameObject):
 
     def __init__(
         self,
-        occupied_positions=None,
+        occupied_positions: list[tuple[int, int]] | None = None,
         body_color: Color = APPLE_COLOR
     ):
         super().__init__(body_color=body_color)
@@ -102,11 +102,13 @@ class Snake(GameObject):
 
     def __init__(self, body_color: Color = SNAKE_COLOR):
         super().__init__(body_color=body_color)
-        self.length = 1
-        self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
-        self.direction = RIGHT
-        self.next_direction = None
-        self.last = None
+        self.length: int = 1
+        self.positions: list[tuple[int, int]] = [
+            (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+        ]
+        self.direction: Pointer = RIGHT
+        self.next_direction: Pointer | None = None
+        self.last: tuple[int, int] | None = None
 
     def update_direction(self):
         """Обновляет направление движения змейки."""
@@ -185,8 +187,7 @@ def main():
             snake.length += 1
             apple.randomize_position(snake.positions)
 
-        head = snake.get_head_position()
-        if head in snake.positions[1:]:
+        if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
             apple.randomize_position(snake.positions)
 
